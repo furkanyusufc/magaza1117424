@@ -1,24 +1,36 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mağazam</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mağazam</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    .product { border:1px solid #eee; padding:16px; margin-bottom:12px; border-radius:8px; max-width:420px; }
+    .price { font-weight:700; margin-top:8px; }
+    .btn { display:inline-block; padding:10px 16px; margin-top:10px; text-decoration:none; border-radius:6px; background:#0b76f6; color:white; }
+  </style>
 </head>
 <body>
-    <h1>Mağazama Hoş Geldiniz</h1>
-    <h2>Ürünler</h2>
+  <h1>Mağazam</h1>
 
-    <div>
-        <h3>Ürün 1</h3>
-        <p>Ürün açıklaması burada</p>
-        <a href="https://odeme-linkin.com" target="_blank">Satın Al</a>
-    </div>
+  <div class="product">
+    <h2>Ürün A</h2>
+    <p>Kısa açıklama burada.</p>
+    <div class="price">Fiyat: 120 TL</div>
+    <!-- Shopier linkini aşağıya yapıştır -->
+    <a class="btn" href="https://shopier.com/s/YOUR_SHOPIER_PRODUCT_LINK" target="_blank" rel="noopener">Satın Al</a>
+  </div>
 
-    <div>
-        <h3>Ürün 2</h3>
-        <p>Ürün açıklaması burada</p>
-        <a href="https://odeme-linkin.com" target="_blank">Satın Al</a>
-    </div>
+  <div class="product">
+    <h2>Ürün B</h2>
+    <p>Kısa açıklama burada.</p>
+    <div class="price">Fiyat: 75 TL</div>
+    <a class="btn" href="https://shopier.com/s/OTHER_PRODUCT_LINK" target="_blank" rel="noopener">Satın Al</a>
+  </div>
+
+  <footer>
+    <p>Ödeme Shopier tarafından güvenli olarak sağlanır. Kart bilgileri bizim sitemizde saklanmaz.</p>
+  </footer>
 </body>
 </html>
