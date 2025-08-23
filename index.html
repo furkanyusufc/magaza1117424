@@ -1,68 +1,174 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Mağazam</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background-color: #f5f5f5;
-      margin: 0;
-      padding: 40px;
-    }
-
-    .product-card {
-      background: #fff;
-      padding: 20px;
-      margin: 20px auto;
-      border-radius: 10px;
-      box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
-      max-width: 400px;
-    }
-
-    .product-card img {
-      max-width: 100%;
-      border-radius: 10px;
-    }
-
-    .product-card h2 {
-      font-size: 22px;
-      margin: 15px 0;
-    }
-
-    .product-card p {
-      font-size: 16px;
-      color: #555;
-    }
-
-    .buy-btn {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 12px 25px;
-      background-color: #4CAF50;
-      color: white;
-      text-decoration: none;
-      font-size: 16px;
-      border-radius: 6px;
-      transition: background 0.3s;
-    }
-
-    .buy-btn:hover {
-      background-color: #45a049;
-    }
+    :root{--accent:#0b76f6;--card-bg:#fff;--muted:#666}
+    body{font-family:Arial,Helvetica,sans-serif;background:#f4f6f8;margin:0;padding:28px;color:#222}
+    .wrap{max-width:1100px;margin:0 auto}
+    header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    h1{margin:0;font-size:28px}
+    .products{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:20px}
+    .card{background:var(--card-bg);padding:14px;border-radius:12px;box-shadow:0 8px 24px rgba(12,24,40,0.06);display:flex;flex-direction:column}
+    .card img{width:100%;height:180px;object-fit:cover;border-radius:8px}
+    .card h2{font-size:18px;margin:12px 0 6px}
+    .card p{flex:1;color:var(--muted);margin:0 0 10px}
+    .meta{display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .price{font-weight:700}
+    .btn{display:inline-block;padding:10px 14px;background:var(--accent);color:#fff;text-decoration:none;border-radius:8px}
+    footer{margin-top:28px;color:var(--muted);font-size:14px;text-align:center}
+    /* modal */
+    #checkoutModal{display:none;position:fixed;inset:0;z-index:9998;align-items:center;justify-content:center}
+    #modalOverlay{position:absolute;inset:0;background:rgba(0,0,0,0.6)}
+    #modalBox{position:relative;width:95%;max-width:980px;height:82vh;background:#fff;border-radius:10px;overflow:hidden;z-index:9999;display:flex;flex-direction:column}
+    #modalHeader{padding:10px 14px;border-bottom:1px solid #eee;display:flex;justify-content:space-between;align-items:center}
+    #modalFrame{flex:1;border:0}
+    .small{font-size:13px;color:#666}
+    .modal-btn{padding:8px 12px;border-radius:8px;border:0;cursor:pointer}
+    /* responsive */
+    @media (max-width:520px){ .card img{height:140px} }
   </style>
 </head>
 <body>
-  <h1>Hoş Geldiniz 🌸</h1>
-  <p>Ürünlerimizi Shopier üzerinden güvenle satın alabilirsiniz.</p>
+  <div class="wrap">
+    <header>
+      <h1>Mağazam</h1>
+      <nav><a href="/mesafeli-satis.html" class="small">Mesafeli Satış Sözleşmesi</a></nav>
+    </header>
 
-  <div class="product-card">
-    <img src="https://via.placeholder.com/400x250" alt="Ürün Fotoğrafı">
-    <h2>Ürün İsmi</h2>
-    <p>Buraya ürünün kısa açıklaması gelecek.</p>
-    <a href="https://shopier.com/38639306" target="_blank" class="buy-btn">Satın Al</a>
+    <p class="small">Ürünleri güvenle Shopier üzerinden satın alabilirsiniz. Kart bilgileri bizim sitede saklanmaz.</p>
+
+    <section id="products" class="products">
+      <!-- ürün kartları JS ile gelecek -->
+    </section>
+
+    <footer>
+      <div class="small">İletişim: [SATICI ADI] • e-posta: [E-POSTA]</div>
+    </footer>
   </div>
+
+  <!-- Modal -->
+  <div id="checkoutModal" aria-hidden="true">
+    <div id="modalOverlay"></div>
+    <div id="modalBox" role="dialog" aria-modal="true">
+      <div id="modalHeader">
+        <strong>Ödeme</strong>
+        <div>
+          <button id="openPopupBtn" class="modal-btn" style="margin-right:8px;background:#f3f4f6">Yeni pencerede aç</button>
+          <button id="closeModalBtn" class="modal-btn" style="background:#ff5c5c;color:#fff">Kapat</button>
+        </div>
+      </div>
+      <iframe id="modalFrame" src="" title="Ödeme" sandbox></iframe>
+      <div id="iframeBlockedNotice" style="display:none;padding:18px;text-align:center;">
+        <p>Ödeme sayfası bu pencerede açılamadı. "Yeni pencerede aç" butonuna tıklayarak ödeme sayfasını yeni pencerede açabilirsiniz.</p>
+        <button id="fallbackOpen" class="modal-btn" style="background:var(--accent);color:#fff;margin-top:8px">Yeni pencerede aç</button>
+      </div>
+    </div>
+  </div>
+
+<script>
+/* ---------- Yardımcı fonksiyonlar ---------- */
+function escapeHtml(s){ return String(s || '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+
+/* ---------- Kart oluşturucu ---------- */
+function createCard(p){
+  const el = document.createElement('article');
+  el.className = 'card';
+  el.innerHTML = `
+    <img src="${escapeHtml(p.image)}" alt="${escapeHtml(p.title)}">
+    <h2>${escapeHtml(p.title)}</h2>
+    <p>${escapeHtml(p.description)}</p>
+    <div class="meta">
+      <div class="price">${escapeHtml(p.price)}</div>
+      <div>
+        <a class="btn open-checkout" href="#" data-link="${escapeHtml(p.shopier)}">Satın Al</a>
+      </div>
+    </div>
+  `;
+  return el;
+}
+
+/* ---------- Ürünleri yükle ---------- */
+async function loadProducts(){
+  const PRODUCTS_JSON = 'products.json';
+  try{
+    const res = await fetch(PRODUCTS_JSON + '?v=' + Date.now()); // cache bypass
+    if(!res.ok) throw new Error('products.json yüklenemedi: ' + res.status);
+    const data = await res.json();
+
+    // Buradaki kritik kısım: eğer dosya doğrudan dizi ise onu kullan,
+    // yoksa {"products":[...]} yapısını destekle.
+    const list = Array.isArray(data) ? data : (data.products || []);
+    const container = document.getElementById('products');
+
+    if(!Array.isArray(list) || list.length === 0){
+      container.innerHTML = '<p>Henüz ürün yok.</p>';
+      return;
+    }
+
+    container.innerHTML = '';
+    list.forEach(p => container.appendChild(createCard(p)));
+  }catch(err){
+    document.getElementById('products').innerHTML = '<p style="color:#c00">Ürün yüklenirken hata: '+escapeHtml(err.message)+'</p>';
+    console.error(err);
+  }
+}
+loadProducts();
+
+/* ---------- Modal + popup fallback ---------- */
+(function(){
+  const modal = document.getElementById('checkoutModal');
+  const overlay = document.getElementById('modalOverlay');
+  const modalBox = document.getElementById('modalBox');
+  const iframe = document.getElementById('modalFrame');
+  const iframeNotice = document.getElementById('iframeBlockedNotice');
+  const closeBtn = document.getElementById('closeModalBtn');
+  const openPopupBtn = document.getElementById('openPopupBtn');
+  const fallbackOpen = document.getElementById('fallbackOpen');
+
+  function openCenteredPopup(url, title='checkoutWindow', w=860, h=680){
+    const left = Math.max(0, (screen.width - w) / 2);
+    const top = Math.max(0, (screen.height - h) / 2);
+    const features = `toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=${w},height=${h},top=${top},left=${left}`;
+    const nw = window.open(url, title, features);
+    if(nw) nw.focus();
+    return nw;
+  }
+
+  function openModalWith(url){
+    iframe.style.display='block';
+    iframeNotice.style.display='none';
+    iframe.src = url;
+    modal.style.display='flex';
+    modal.setAttribute('aria-hidden','false');
+
+    const to = setTimeout(()=>{ iframe.style.display='none'; iframeNotice.style.display='block'; }, 1400);
+    iframe.onload = function(){ clearTimeout(to); iframeNotice.style.display='none'; iframe.style.display='block'; };
+    document.addEventListener('keydown', escListener);
+  }
+
+  function closeModal(){ iframe.src=''; modal.style.display='none'; modal.setAttribute('aria-hidden','true'); document.removeEventListener('keydown', escListener); }
+  function escListener(e){ if(e.key === 'Escape') closeModal(); }
+
+  document.addEventListener('click', function(e){
+    const btn = e.target.closest && e.target.closest('.open-checkout');
+    if(!btn) return;
+    e.preventDefault();
+    const url = btn.getAttribute('data-link');
+    if(!url) return alert('Ödeme linki bulunamadı.');
+    openModalWith(url);
+  });
+
+  closeBtn.addEventListener('click', closeModal);
+  overlay.addEventListener('click', closeModal);
+  openPopupBtn.addEventListener('click', ()=>{ if(iframe.src) openCenteredPopup(iframe.src); });
+  fallbackOpen.addEventListener('click', ()=>{ if(iframe.src) openCenteredPopup(iframe.src); });
+
+  // global olarak da açılabilir fonksiyon
+  window.openCenteredPopup = openCenteredPopup;
+})();
+</script>
 </body>
 </html>
