@@ -1,0 +1,24 @@
+backend:
+  name: git-gateway
+  branch: main   #
+
+media_folder: "images/uploads"   # repoda görseller nerede saklanacak
+public_folder: "/images/uploads" # site içinde kullanılacak yol
+
+collections:
+  - name: "products"
+    label: "Ürünler"
+    files:
+      - file: "products.json"
+        label: "Products JSON"
+        name: "products_json"
+        format: json
+        fields:
+          - { label: "Ürünler", name: "products", widget: "list", collapsed: true, fields:
+              - {label: "id", name: "id", widget: "string"}
+              - {label: "title", name: "title", widget: "string"}
+              - {label: "description", name: "description", widget: "text"}
+              - {label: "price", name: "price", widget: "string"}
+              - {label: "image", name: "image", widget: "image"}
+              - {label: "shopier", name: "shopier", widget: "string"}
+            }
