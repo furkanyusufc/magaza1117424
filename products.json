@@ -2,9 +2,13 @@
   "products": [
     {
       "id": "38639306",
-      "title": "Örnek Ürün",
-      "description": "Kısa açıklama: Ürün özellikleri.",
-      "price": "120 TL",
+      "title": "Nişan, Söz, Gelin Çiçeği",
+      "description": "Buket krapon kağıdından yapılmıştır.
+El yapımıdır.
+Sap kısmı yapay kuş tüyü ile kolay bir tutuş sağlar .
+
+Sipariş teslimattan bir hafta önce verilmelidir.",
+      "price": "1750 TL",
       "image": "https://via.placeholder.com/800x500?text=Ürün+Fotoğrafı",
       "shopier": "https://shopier.com/38639306"
     }
