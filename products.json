@@ -1,0 +1,12 @@
+{
+  "products": [
+    {
+      "id": "38639306",
+      "title": "Örnek Ürün",
+      "description": "Kısa açıklama: Ürün özellikleri.",
+      "price": "120 TL",
+      "image": "https://via.placeholder.com/800x500?text=Ürün+Fotoğrafı",
+      "shopier": "https://shopier.com/38639306"
+    }
+  ]
+}
