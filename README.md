@@ -1,1 +1,0 @@
-# furkanyusufc.github.io
