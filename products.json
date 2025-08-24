@@ -2,15 +2,19 @@
   "products": [
     {
       "id": "38639306",
-      "title": "Nişan, Söz, Gelin Çiçeği",
-      "description": "Buket krapon kağıdından yapılmıştır.
-El yapımıdır.
-Sap kısmı yapay kuş tüyü ile kolay bir tutuş sağlar .
-
-Sipariş teslimattan bir hafta önce verilmelidir.",
+      "title": "Nişan / Söz / Gelin Buketi",
+      "description": "Krapon kağıdından el yapımı buket. Sap kısmı yapay kuş tüyü ile kaplıdır, tutuşu rahattır. Lütfen siparişinizi teslimattan en az 1 hafta önce veriniz.",
       "price": "1750 TL",
-      "image": "https://via.placeholder.com/800x500?text=Ürün+Fotoğrafı",
+      "image": "https://via.placeholder.com/800x500?text=Nişan+Buketi",
       "shopier": "https://shopier.com/38639306"
+    },
+    {
+      "id": "38639307",
+      "title": "El Yapımı Krem Buket",
+      "description": "Krem tonlarında el yapımı buket; krapon kağıdı detaylı çiçekler ile hazırlanmıştır. Zarif, uzun ömürlü ve özel günler için uygundur. Siparişler teslimattan en az 1 hafta önce verilmelidir.",
+      "price": "1600 TL",
+      "image": "https://via.placeholder.com/800x500?text=Krem+Buketi",
+      "shopier": "https://shopier.com/38639307"
     }
   ]
 }
