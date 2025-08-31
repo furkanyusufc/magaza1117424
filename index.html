@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>kkkk</title>
+  <title>Ürün Kataloğu</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -42,29 +42,30 @@
       display: flex;
       flex-direction: column;
     }
-    .slider {
-      position: relative;
-      width: 100%;
-      height: 220px;
-      overflow: hidden;
-    }
-    .slider img {
+    .main-image {
       width: 100%;
       height: 220px;
       object-fit: cover;
-      position: absolute;
-      top: 0;
-      left: 100%; /* sağdan başla */
-      opacity: 0;
-      transition: all 1s ease;
+      border-bottom: 1px solid #eee;
     }
-    .slider img.active {
-      left: 0;   /* ekranda */
-      opacity: 1;
+    .thumbnails {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      padding: 10px;
+      background: #f9f9f9;
     }
-    .slider img.prev {
-      left: -100%; /* sola kayıp çık */
-      opacity: 0;
+    .thumbnails img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 6px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: border 0.2s;
+    }
+    .thumbnails img:hover {
+      border: 2px solid #b56576;
     }
     .product-info {
       padding: 1rem;
@@ -113,9 +114,13 @@
     <div id="product-list">
       <!-- Ürün 1 -->
       <article class="product-card">
-        <div class="slider" id="slider">
-          <img src="images/1.jpg" class="active" alt="Buket 1">
-          <img src="images/2.jpg" alt="Buket 2">
+        <!-- Büyük Görsel -->
+        <img id="mainImage" src="images/1.jpg" alt="Buket 1" class="main-image">
+
+        <!-- Küçük Önizleme -->
+        <div class="thumbnails">
+          <img src="images/1.jpg" alt="Buket 1" onclick="changeImage('images/1.jpg')">
+          <img src="images/2.jpg" alt="Buket 2" onclick="changeImage('images/2.jpg')">
         </div>
 
         <div class="product-info">
@@ -129,18 +134,9 @@
   </main>
 
   <script>
-    const slides = document.querySelectorAll("#slider img");
-    let index = 0;
-
-    setInterval(() => {
-      slides[index].classList.remove("active");
-      slides[index].classList.add("prev");
-
-      index = (index + 1) % slides.length;
-
-      slides[index].classList.remove("prev");
-      slides[index].classList.add("active");
-    }, 3000); // 3 saniyede bir değiştir
+    function changeImage(src) {
+      document.getElementById("mainImage").src = src;
+    }
   </script>
 </body>
 </html>
