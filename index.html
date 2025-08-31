@@ -54,16 +54,16 @@
       object-fit: cover;
       position: absolute;
       top: 0;
-      left: 100%;
+      left: 100%; /* sağdan başla */
       opacity: 0;
       transition: all 1s ease;
     }
     .slider img.active {
-      left: 0;
+      left: 0;   /* ekranda */
       opacity: 1;
     }
     .slider img.prev {
-      left: -100%;
+      left: -100%; /* sola kayıp çık */
       opacity: 0;
     }
     .product-info {
@@ -140,7 +140,7 @@
 
       slides[index].classList.remove("prev");
       slides[index].classList.add("active");
-    }, 2000); // 2 saniyede bir değiştir
+    }, 3000); // 3 saniyede bir değiştir
   </script>
 </body>
 </html>
