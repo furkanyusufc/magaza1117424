@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ürksc</title>
+  <title>Ürün Kataloğu</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet">
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -17,10 +18,6 @@
       color: #fff;
       padding: 1rem;
       text-align: center;
-    }
-    h1 {
-      margin: 0;
-      font-size: 1.8rem;
     }
     main {
       padding: 2rem;
@@ -45,10 +42,11 @@
     /* Büyük Resim */
     .main-image {
       width: 100%;
-      height: 400px;          /* Daha büyük yaptık */
-      object-fit: contain;    /* Resmi kesmeden göster */
-      background: #f0f0f0;    /* Boş alan gri olsun */
+      height: 400px;
+      object-fit: contain;
+      background: #f0f0f0;
       border-bottom: 1px solid #eee;
+      cursor: pointer;
     }
     /* Küçük Önizleme */
     .thumbnails {
@@ -70,27 +68,18 @@
     .thumbnails img:hover {
       border: 2px solid #b56576;
     }
-    /* Ürün Bilgisi */
     .product-info {
       padding: 1rem;
       flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
     }
     .product-info h2 {
       font-size: 1.3rem;
       margin-bottom: .5rem;
     }
-    .product-info p {
-      font-size: .95rem;
-      margin-bottom: 1rem;
-      line-height: 1.4;
-    }
     .price {
       font-size: 1.2rem;
       font-weight: bold;
-      margin-bottom: 1rem;
+      margin: 1rem 0;
       color: #b56576;
     }
     .buy-btn {
@@ -116,10 +105,12 @@
 
   <main>
     <div id="product-list">
-      <!-- Ürün 1 -->
+      <!-- Ürün -->
       <article class="product-card">
-        <!-- Büyük Görsel -->
-        <img id="mainImage" src="images/1.jpg" alt="Buket 1" class="main-image">
+        <!-- Büyük Görsel (Lightbox açılır) -->
+        <a href="images/1.jpg" data-lightbox="buket" data-title="Nişan / Söz / Gelin Buketi">
+          <img id="mainImage" src="images/1.jpg" alt="Buket 1" class="main-image">
+        </a>
 
         <!-- Küçük Önizleme -->
         <div class="thumbnails">
@@ -131,15 +122,17 @@
           <h2>Nişan / Söz / Gelin Buketi</h2>
           <p>Krapon kağıdından el yapımı buket. Siparişinizi teslimattan en az 1 hafta önce veriniz.</p>
           <div class="price">1750 TL</div>
-          <a class="buy-btn" href="https://shopier.com/38639306" target="_blank" rel="noopener">Satın Al</a>
+          <a class="buy-btn" href="https://shopier.com/38639306" target="_blank">Satın Al</a>
         </div>
       </article>
     </div>
   </main>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox-plus-jquery.min.js"></script>
   <script>
     function changeImage(src) {
       document.getElementById("mainImage").src = src;
+      document.querySelector(".main-image").parentElement.href = src; // Lightbox linkini güncelle
     }
   </script>
 </body>
