@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Belizia A.L K</title>
+  <title>Ürün Kataloğu</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -42,10 +42,29 @@
       display: flex;
       flex-direction: column;
     }
-    .product-card img {
+    .slider {
+      position: relative;
+      width: 100%;
+      height: 220px;
+      overflow: hidden;
+    }
+    .slider img {
       width: 100%;
       height: 220px;
       object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 100%;
+      opacity: 0;
+      transition: all 1s ease;
+    }
+    .slider img.active {
+      left: 0;
+      opacity: 1;
+    }
+    .slider img.prev {
+      left: -100%;
+      opacity: 0;
     }
     .product-info {
       padding: 1rem;
@@ -87,27 +106,41 @@
 </head>
 <body>
   <header>
-    <h1>Belizia A.L K</h1>
+    <h1>El Yapımı Buketler</h1>
   </header>
 
   <main>
     <div id="product-list">
       <!-- Ürün 1 -->
       <article class="product-card">
-        <img src="images/1.jpg" alt="Nişan / Söz / Gelin Buketi">
-        <div class="product-info">
-          <h2>Nişan, Söz, Gelin Çiçeği</h2>
-          <p>Buket krapon kağıdından yapılmıştır.
-El yapımıdır.
-Sap kısmı yapay kuş tüyü ile kolay bir tutuş sağlar .
+        <div class="slider" id="slider">
+          <img src="images/1.jpg" class="active" alt="Buket 1">
+          <img src="images/2.jpg" alt="Buket 2">
+        </div>
 
-Sipariş teslimattan bir hafta önce verilmelidir.
-          Kargo ücreti: 75 TL</p>
+        <div class="product-info">
+          <h2>Nişan / Söz / Gelin Buketi</h2>
+          <p>Krapon kağıdından el yapımı buket. Siparişinizi teslimattan en az 1 hafta önce veriniz.</p>
           <div class="price">1750 TL</div>
           <a class="buy-btn" href="https://shopier.com/38639306" target="_blank" rel="noopener">Satın Al</a>
         </div>
       </article>
     </div>
   </main>
+
+  <script>
+    const slides = document.querySelectorAll("#slider img");
+    let index = 0;
+
+    setInterval(() => {
+      slides[index].classList.remove("active");
+      slides[index].classList.add("prev");
+
+      index = (index + 1) % slides.length;
+
+      slides[index].classList.remove("prev");
+      slides[index].classList.add("active");
+    }, 2000); // 2 saniyede bir değiştir
+  </script>
 </body>
 </html>
