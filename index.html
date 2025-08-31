@@ -1,100 +1,99 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ürün Kataloğu</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ürümd</title>
+
+  <!-- Lightbox CSS (CDN) -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet">
+
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #fafafa;
-      color: #333;
+    :root{
+      --page-bg: #fafafa;        /* sayfa arkaplanı */
+      --gold:    #d4af37;        /* altın rengi metinler için */
+      --muted:   #6b6b6b;
+      --card-bg: #ffffff;
+      --accent:  #222222;        /* düğme arkaplanı */
     }
-    header {
-      background: #b56576;
-      color: #fff;
+
+    /* Genel */
+    html,body{height:100%;margin:0;padding:0;background:var(--page-bg);color:var(--gold);font-family:Arial, Helvetica, sans-serif}
+    a{color:var(--gold);text-decoration:none}
+    a:focus,button:focus{outline:3px solid rgba(212,175,55,0.18);outline-offset:2px}
+
+    /* Header: sayfa rengiyle aynı (transparent gibi), metin altın */
+    header{
+      background: var(--page-bg); /* sayfa rengiyle aynı */
+      color: var(--gold);
       padding: 1rem;
       text-align: center;
     }
-    main {
-      padding: 2rem;
-      display: flex;
-      justify-content: center;
+    header h1{margin:0;font-size:1.6rem;color:var(--gold)}
+
+    main{padding:2rem;display:flex;justify-content:center}
+
+    #product-list{
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+      gap:1.5rem;
+      width:100%;
+      max-width:1000px;
     }
-    #product-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 1.5rem;
-      width: 100%;
-      max-width: 1000px;
+
+    .product-card{
+      background:var(--card-bg);
+      border-radius:12px;
+      box-shadow:0 4px 10px rgba(0,0,0,0.06);
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      color:var(--gold); /* tüm metinler altın */
     }
-    .product-card {
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
+
+    /* Büyük resim */
+    .main-image{
+      width:100%;
+      height:400px;
+      object-fit:contain;   /* tam resmi göster */
+      background:#f0f0f0;
+      border-bottom:1px solid #eee;
+      cursor:pointer;
+      display:block;
     }
-    /* Büyük Resim */
-    .main-image {
-      width: 100%;
-      height: 400px;
-      object-fit: contain;
-      background: #f0f0f0;
-      border-bottom: 1px solid #eee;
-      cursor: pointer;
+
+    /* Küçük önizlemeler */
+    .thumbnails{
+      display:flex;
+      justify-content:center;
+      gap:10px;
+      padding:10px;
+      background:#f9f9f9;
     }
-    /* Küçük Önizleme */
-    .thumbnails {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      padding: 10px;
-      background: #f9f9f9;
+    .thumbnails img{
+      width:70px;height:70px;object-fit:cover;border-radius:6px;cursor:pointer;
+      border:2px solid transparent;transition:border .15s ease, transform .12s ease;
     }
-    .thumbnails img {
-      width: 70px;
-      height: 70px;
-      object-fit: cover;
-      border-radius: 6px;
-      cursor: pointer;
-      border: 2px solid transparent;
-      transition: border 0.2s;
+    .thumbnails img:hover{ border-color:var(--gold); transform:translateY(-2px); }
+
+    /* Ürün bilgileri: tüm yazılar altın */
+    .product-info{padding:1rem;flex:1;display:flex;flex-direction:column;justify-content:space-between;color:var(--gold)}
+    .product-info h2{font-size:1.3rem;margin:0 0 .5rem;color:var(--gold)}
+    .product-info p{font-size:.95rem;margin:0 0 1rem;line-height:1.45;color:var(--gold)}
+    .price{font-size:1.2rem;font-weight:700;margin-bottom:1rem;color:var(--gold)}
+
+    /* Satın al butonu: arkaplan koyu, yazı altın */
+    .buy-btn{
+      display:inline-block;padding:.7rem 1.2rem;border-radius:8px;background:var(--accent);
+      color:var(--gold);font-weight:700;text-decoration:none;text-align:center;
+      box-shadow:0 6px 12px rgba(0,0,0,0.08);transition:transform .12s ease, box-shadow .12s ease;
     }
-    .thumbnails img:hover {
-      border: 2px solid #b56576;
-    }
-    .product-info {
-      padding: 1rem;
-      flex: 1;
-    }
-    .product-info h2 {
-      font-size: 1.3rem;
-      margin-bottom: .5rem;
-    }
-    .price {
-      font-size: 1.2rem;
-      font-weight: bold;
-      margin: 1rem 0;
-      color: #b56576;
-    }
-    .buy-btn {
-      display: inline-block;
-      text-decoration: none;
-      background: #b56576;
-      color: #fff;
-      padding: .7rem 1.2rem;
-      border-radius: 8px;
-      font-weight: bold;
-      text-align: center;
-      transition: background .2s;
-    }
-    .buy-btn:hover {
-      background: #a15365;
+    .buy-btn:hover{ transform:translateY(-2px); box-shadow:0 10px 18px rgba(0,0,0,0.12) }
+
+    /* Responsive */
+    @media (max-width:720px){
+      .main-image{height:260px}
+      .thumbnails img{width:56px;height:56px}
     }
   </style>
 </head>
@@ -105,35 +104,49 @@
 
   <main>
     <div id="product-list">
-      <!-- Ürün -->
       <article class="product-card">
-        <!-- Büyük Görsel (Lightbox açılır) -->
-        <a href="images/1.jpg" data-lightbox="buket" data-title="Nişan / Söz / Gelin Buketi">
-          <img id="mainImage" src="images/1.jpg" alt="Buket 1" class="main-image">
+        <!-- Büyük görsel: tıklayınca Lightbox açılır (tam ekran + pinch/zoom) -->
+        <a id="lightboxLink" href="images/1.jpg" data-lightbox="buket" data-title="Nişan / Söz / Gelin Buketi">
+          <img id="mainImage" class="main-image" src="images/1.jpg" alt="Nişan / Söz / Gelin Buketi">
         </a>
 
-        <!-- Küçük Önizleme -->
-        <div class="thumbnails">
-          <img src="images/1.jpg" alt="Buket 1" onclick="changeImage('images/1.jpg')">
-          <img src="images/2.jpg" alt="Buket 2" onclick="changeImage('images/2.jpg')">
+        <!-- Küçük önizlemeler -->
+        <div class="thumbnails" aria-hidden="false">
+          <img src="images/1.jpg" alt="Buket 1" onclick="changeImage('images/1.jpg')" />
+          <img src="images/2.jpg" alt="Buket 2" onclick="changeImage('images/2.jpg')" />
         </div>
 
         <div class="product-info">
-          <h2>Nişan / Söz / Gelin Buketi</h2>
-          <p>Krapon kağıdından el yapımı buket. Siparişinizi teslimattan en az 1 hafta önce veriniz.</p>
-          <div class="price">1750 TL</div>
-          <a class="buy-btn" href="https://shopier.com/38639306" target="_blank">Satın Al</a>
+          <div>
+            <h2>Nişan / Söz / Gelin Buketi</h2>
+            <p>Krapon kağıdından el yapımı buket. Siparişinizi teslimattan en az 1 hafta önce veriniz.</p>
+          </div>
+
+          <div>
+            <div class="price">1750 TL</div>
+            <a class="buy-btn" href="https://shopier.com/38639306" target="_blank" rel="noopener">Satın Al</a>
+          </div>
         </div>
       </article>
     </div>
   </main>
 
+  <!-- Lightbox JS (CDN) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox-plus-jquery.min.js"></script>
+
   <script>
-    function changeImage(src) {
-      document.getElementById("mainImage").src = src;
-      document.querySelector(".main-image").parentElement.href = src; // Lightbox linkini güncelle
+    function changeImage(src){
+      // Büyük görseli ve lightbox linkini güncelle
+      var main = document.getElementById('mainImage');
+      var link = document.getElementById('lightboxLink');
+      main.src = src;
+      link.href = src;
+      // aria-live bildirim (erişilebilirlik)
+      link.setAttribute('data-title', 'Resim: ' + (src.split('/').pop()));
     }
+
+    // Dokunmatik pinch + mousepad zoom lightbox tarafından desteklenir.
+    // (Lightbox2 mobile pinch/zoom desteğini sağlar; daha gelişmiş istersen PhotoSwipe öneririm.)
   </script>
 </body>
 </html>
