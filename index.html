@@ -3,172 +3,30 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title></title>
-  <style>
-    :root{--accent:#0b76f6;--card-bg:#fff;--muted:#666}
-    body{font-family:Arial,Helvetica,sans-serif;background:#f4f6f8;margin:0;padding:28px;color:#222}
-    .wrap{max-width:1100px;margin:0 auto}
-    header{display:flex;align-items:center;justify-content:space-between;gap:12px}
-    h1{margin:0;font-size:28px}
-    .products{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:20px}
-    .card{background:var(--card-bg);padding:14px;border-radius:12px;box-shadow:0 8px 24px rgba(12,24,40,0.06);display:flex;flex-direction:column}
-    .card img{width:100%;height:180px;object-fit:cover;border-radius:8px}
-    .card h2{font-size:18px;margin:12px 0 6px}
-    .card p{flex:1;color:var(--muted);margin:0 0 10px}
-    .meta{display:flex;align-items:center;justify-content:space-between;gap:10px}
-    .price{font-weight:700}
-    .btn{display:inline-block;padding:10px 14px;background:var(--accent);color:#fff;text-decoration:none;border-radius:8px}
-    footer{margin-top:28px;color:var(--muted);font-size:14px;text-align:center}
-    /* modal */
-    #checkoutModal{display:none;position:fixed;inset:0;z-index:9998;align-items:center;justify-content:center}
-    #modalOverlay{position:absolute;inset:0;background:rgba(0,0,0,0.6)}
-    #modalBox{position:relative;width:95%;max-width:980px;height:82vh;background:#fff;border-radius:10px;overflow:hidden;z-index:9999;display:flex;flex-direction:column}
-    #modalHeader{padding:10px 14px;border-bottom:1px solid #eee;display:flex;justify-content:space-between;align-items:center}
-    #modalFrame{flex:1;border:0}
-    .small{font-size:13px;color:#666}
-    .modal-btn{padding:8px 12px;border-radius:8px;border:0;cursor:pointer}
-    /* responsive */
-    @media (max-width:520px){ .card img{height:140px} }
-  </style>
+  <title>Mağazam</title>
+
+  <!-- Basit inline favicon (küçük SVG) ile favicon 404 engellenir -->
+  <link rel="icon" href='data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23ffffff"/><text x="50" y="60" font-size="60" text-anchor="middle">★</text></svg>'>
+
+  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="El yapımı ürünler - küçük mağaza" />
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <h1>Mağazam</h1>
-      <nav><a href="/mesafeli-satis.html" class="small">Mesafeli Satış Sözleşmesi</a></nav>
-    </header>
+  <header class="site-header">
+    <h1>Mağazam</h1>
+    <a class="contract-link" href="/mesafeli-satis.html">Mesafeli Satış Sözleşmesi</a>
+  </header>
 
-    <p class="small"></p>
+  <main class="container">
+    <!-- ürün listesi buraya render edilecek -->
+    <div id="product-list"></div>
+  </main>
 
-    <section id="products" class="products">
-      <!-- ürün kartları JS ile gelecek -->
-    </section>
+  <footer class="site-footer" style="text-align:center;padding:36px 16px;color:#777;">
+    İletişim: [SATICI ADI] • e-posta: [E-POSTA]
+  </footer>
 
-    <footer>
-      <div class="small">İletişim: [SATICI ADI] • e-posta: [E-POSTA]</div>
-    </footer>
-  </div>
-
-  <!-- Modal -->
-  <div id="checkoutModal" aria-hidden="true">
-    <div id="modalOverlay"></div>
-    <div id="modalBox" role="dialog" aria-modal="true">
-      <div id="modalHeader">
-        <strong>Ödeme</strong>
-        <div>
-          <button id="openPopupBtn" class="modal-btn" style="margin-right:8px;background:#f3f4f6">Yeni pencerede aç</button>
-          <button id="closeModalBtn" class="modal-btn" style="background:#ff5c5c;color:#fff">Kapat</button>
-        </div>
-      </div>
-      <iframe id="modalFrame" src="" title="Ödeme" sandbox></iframe>
-      <div id="iframeBlockedNotice" style="display:none;padding:18px;text-align:center;">
-        <p>Ödeme sayfası bu pencerede açılamadı. "Yeni pencerede aç" butonuna tıklayarak ödeme sayfasını yeni pencerede açabilirsiniz.</p>
-        <button id="fallbackOpen" class="modal-btn" style="background:var(--accent);color:#fff;margin-top:8px">Yeni pencerede aç</button>
-      </div>
-    </div>
-  </div>
-
-<script>
-/* ---------- Yardımcı fonksiyonlar ---------- */
-function escapeHtml(s){ return String(s || '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
-
-/* ---------- Kart oluşturucu ---------- */
-function createCard(p){
-  const el = document.createElement('article');
-  el.className = 'card';
-  el.innerHTML = `
-    <img src="${escapeHtml(p.image)}" alt="${escapeHtml(p.title)}">
-    <h2>${escapeHtml(p.title)}</h2>
-    <p>${escapeHtml(p.description)}</p>
-    <div class="meta">
-      <div class="price">${escapeHtml(p.price)}</div>
-      <div>
-        <a class="btn open-checkout" href="#" data-link="${escapeHtml(p.shopier)}">Satın Al</a>
-      </div>
-    </div>
-  `;
-  return el;
-}
-
-/* ---------- Ürünleri yükle ---------- */
-async function loadProducts(){
-  const PRODUCTS_JSON = 'products.json';
-  try{
-    const res = await fetch(PRODUCTS_JSON + '?v=' + Date.now()); // cache bypass
-    if(!res.ok) throw new Error('products.json yüklenemedi: ' + res.status);
-    const data = await res.json();
-
-    // Buradaki kritik kısım: eğer dosya doğrudan dizi ise onu kullan,
-    // yoksa {"products":[...]} yapısını destekle.
-    const list = Array.isArray(data) ? data : (data.products || []);
-    const container = document.getElementById('products');
-
-    if(!Array.isArray(list) || list.length === 0){
-      container.innerHTML = '<p>Henüz ürün yok.</p>';
-      return;
-    }
-
-    container.innerHTML = '';
-    list.forEach(p => container.appendChild(createCard(p)));
-  }catch(err){
-    document.getElementById('products').innerHTML = '<p style="color:#c00">Ürün yüklenirken hata: '+escapeHtml(err.message)+'</p>';
-    console.error(err);
-  }
-}
-loadProducts();
-
-/* ---------- Modal + popup fallback ---------- */
-(function(){
-  const modal = document.getElementById('checkoutModal');
-  const overlay = document.getElementById('modalOverlay');
-  const modalBox = document.getElementById('modalBox');
-  const iframe = document.getElementById('modalFrame');
-  const iframeNotice = document.getElementById('iframeBlockedNotice');
-  const closeBtn = document.getElementById('closeModalBtn');
-  const openPopupBtn = document.getElementById('openPopupBtn');
-  const fallbackOpen = document.getElementById('fallbackOpen');
-
-  function openCenteredPopup(url, title='checkoutWindow', w=860, h=680){
-    const left = Math.max(0, (screen.width - w) / 2);
-    const top = Math.max(0, (screen.height - h) / 2);
-    const features = `toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=${w},height=${h},top=${top},left=${left}`;
-    const nw = window.open(url, title, features);
-    if(nw) nw.focus();
-    return nw;
-  }
-
-  function openModalWith(url){
-    iframe.style.display='block';
-    iframeNotice.style.display='none';
-    iframe.src = url;
-    modal.style.display='flex';
-    modal.setAttribute('aria-hidden','false');
-
-    const to = setTimeout(()=>{ iframe.style.display='none'; iframeNotice.style.display='block'; }, 1400);
-    iframe.onload = function(){ clearTimeout(to); iframeNotice.style.display='none'; iframe.style.display='block'; };
-    document.addEventListener('keydown', escListener);
-  }
-
-  function closeModal(){ iframe.src=''; modal.style.display='none'; modal.setAttribute('aria-hidden','true'); document.removeEventListener('keydown', escListener); }
-  function escListener(e){ if(e.key === 'Escape') closeModal(); }
-
-  document.addEventListener('click', function(e){
-    const btn = e.target.closest && e.target.closest('.open-checkout');
-    if(!btn) return;
-    e.preventDefault();
-    const url = btn.getAttribute('data-link');
-    if(!url) return alert('Ödeme linki bulunamadı.');
-    openModalWith(url);
-  });
-
-  closeBtn.addEventListener('click', closeModal);
-  overlay.addEventListener('click', closeModal);
-  openPopupBtn.addEventListener('click', ()=>{ if(iframe.src) openCenteredPopup(iframe.src); });
-  fallbackOpen.addEventListener('click', ()=>{ if(iframe.src) openCenteredPopup(iframe.src); });
-
-  // global olarak da açılabilir fonksiyon
-  window.openCenteredPopup = openCenteredPopup;
-})();
-</script>
+  <!-- script.js mutlaka body sonundan önce gelsin -->
+  <script src="script.js"></script>
 </body>
 </html>
