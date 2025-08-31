@@ -1,32 +1,108 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Mağazam</title>
-
-  <!-- Basit inline favicon (küçük SVG) ile favicon 404 engellenir -->
-  <link rel="icon" href='data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23ffffff"/><text x="50" y="60" font-size="60" text-anchor="middle">★</text></svg>'>
-
-  <link rel="stylesheet" href="style.css" />
-  <meta name="description" content="El yapımı ürünler - küçük mağaza" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ürün Kataloğu</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fafafa;
+      color: #333;
+    }
+    header {
+      background: #b56576;
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+    }
+    h1 {
+      margin: 0;
+      font-size: 1.8rem;
+    }
+    main {
+      padding: 2rem;
+      display: flex;
+      justify-content: center;
+    }
+    #product-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      width: 100%;
+      max-width: 1000px;
+    }
+    .product-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .product-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+    .product-info {
+      padding: 1rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .product-info h2 {
+      font-size: 1.3rem;
+      margin-bottom: .5rem;
+    }
+    .product-info p {
+      font-size: .95rem;
+      margin-bottom: 1rem;
+      line-height: 1.4;
+    }
+    .price {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      color: #b56576;
+    }
+    .buy-btn {
+      display: inline-block;
+      text-decoration: none;
+      background: #b56576;
+      color: #fff;
+      padding: .7rem 1.2rem;
+      border-radius: 8px;
+      font-weight: bold;
+      text-align: center;
+      transition: background .2s;
+    }
+    .buy-btn:hover {
+      background: #a15365;
+    }
+  </style>
 </head>
 <body>
-  <header class="site-header">
-    <h1>Mağazam</h1>
-    <a class="contract-link" href="/mesafeli-satis.html">Mesafeli Satış Sözleşmesi</a>
+  <header>
+    <h1>El Yapımı Buketler</h1>
   </header>
 
-  <main class="container">
-    <!-- ürün listesi buraya render edilecek -->
-    <div id="product-list"></div>
+  <main>
+    <div id="product-list">
+      <!-- Ürün 1 -->
+      <article class="product-card">
+        <img src="images/1.jpg" alt="Nişan / Söz / Gelin Buketi">
+        <div class="product-info">
+          <h2>Nişan / Söz / Gelin Buketi</h2>
+          <p>Krapon kağıdından el yapımı buket. Siparişinizi teslimattan en az 1 hafta önce veriniz.</p>
+          <div class="price">1750 TL</div>
+          <a class="buy-btn" href="https://shopier.com/38639306" target="_blank" rel="noopener">Satın Al</a>
+        </div>
+      </article>
+    </div>
   </main>
-
-  <footer class="site-footer" style="text-align:center;padding:36px 16px;color:#777;">
-    İletişim: [SATICI ADI] • e-posta: [E-POSTA]
-  </footer>
-
-  <!-- script.js mutlaka body sonundan önce gelsin -->
-  <script src="script.js"></script>
 </body>
 </html>
