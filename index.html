@@ -10,18 +10,35 @@
 
   <style>
     :root{
-      --blue:       #163559;
-      --blue-dark:  #0f283f;
-      --page-bg:    var(--blue);
-      --gold:       #d4af37;
-      --card-surface:#ffffff;
+      --blue:         #163559;
+      --blue-dark:    #0f283f;
+      --page-bg:      var(--blue);
+      --gold:         #d4af37;
+      --card-surface: #ffffff;
+
+      /* önceki header'ın yarısı kadar boşluk: 0.5rem (kolayca değiştirilebilir) */
+      --header-space: 0.5rem;
     }
 
-    html,body{height:100%;margin:0;padding:0;background:var(--page-bg);color:var(--gold);font-family:Inter, Arial, Helvetica, sans-serif}
+    html,body{
+      height:100%;
+      margin:0;
+      padding:0;
+      background:var(--page-bg);
+      color:var(--gold);
+      font-family:Inter, Arial, Helvetica, sans-serif;
+    }
     a{color:var(--gold);text-decoration:none}
     a:focus,button:focus{outline:3px solid rgba(212,175,55,0.18);outline-offset:2px}
 
-    main{padding:0 1.25rem 2.5rem 1.25rem;display:flex;justify-content:center;min-height:100vh;box-sizing:border-box}
+    /* main: üstte önceki header'ın yarısı kadar boşluk */
+    main{
+      padding: var(--header-space) 1.25rem 2.5rem 1.25rem;
+      display:flex;
+      justify-content:center;
+      min-height:100vh;
+      box-sizing:border-box;
+    }
 
     #product-list{
       display:grid;
@@ -92,7 +109,7 @@
   <main>
     <div id="product-list">
 
-      <!-- 1 (orijinal) -->
+      <!-- 1 -->
       <article class="product-card" aria-labelledby="p1-title">
         <a id="lightbox-p1" href="images/1.jpg" data-lightbox="p1" data-title="Nişan / Söz / Gelin Buketi">
           <img class="main-image" src="images/1.jpg" alt="Nişan / Söz / Gelin Buketi">
@@ -282,7 +299,6 @@
   <script>
     // küçük resme tıklayınca ilgili ürünün Lightbox linkini ve ana görselini güncelliyor
     function setMain(imgEl, productId) {
-      // find nearest product card / lightbox link in the same card
       const card = imgEl.closest('.product-card');
       if(!card) return;
       const mainImg = card.querySelector('.main-image');
