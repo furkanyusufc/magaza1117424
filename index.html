@@ -5,21 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>MAĞAZA ADINIZ — Ürün Kataloğu</title>
 
-  <!-- Lightbox CSS (CDN) -->
+  <!-- Lightbox CSS (CDN) - görsel açma için, çerez üretmez -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet">
 
   <style>
     :root{
-      --blue:         #163559;   /* kapalı mavi */
-      --blue-dark:    #0f283f;   /* buton hover */
-      --gold:         #d4af37;   /* altın */
+      --blue:         #163559;
+      --blue-dark:    #0f283f;
+      --gold:         #d4af37;
       --card-surface: #ffffff;
       --muted:        #bfc7ce;
-
-      --header-height: 56px;     /* header yüksekliği */
+      --header-height: 56px;
     }
 
-    /* Reset / temel ayarlar */
     html,body{
       height:100%;
       margin:0;
@@ -27,13 +25,8 @@
       background:var(--blue);
       color:var(--gold);
       font-family:Inter, Arial, Helvetica, sans-serif;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
     }
     a{color:var(--gold);text-decoration:none}
-    a:focus,button:focus{outline:3px solid rgba(212,175,55,0.18);outline-offset:2px}
-
-    /* HEADER */
     header{
       height:var(--header-height);
       background:var(--blue);
@@ -46,14 +39,8 @@
       top:0;
       z-index:30;
     }
-    header h1{
-      margin:0;
-      font-size:1.05rem;
-      font-weight:700;
-      letter-spacing:0.4px;
-    }
+    header h1{margin:0;font-size:1.05rem;font-weight:700}
 
-    /* MAIN: header altında başlasın (küçük aralık) */
     main{
       padding: 0 1.25rem 2.5rem 1.25rem;
       padding-top: calc(var(--header-height) + 0.25rem);
@@ -63,7 +50,6 @@
       box-sizing:border-box;
     }
 
-    /* ÜRÜN LİSTESİ */
     #product-list{
       display:grid;
       grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
@@ -73,96 +59,32 @@
       margin:0;
     }
 
-    .product-card{
-      background:var(--card-surface);
-      border-radius:12px;
-      box-shadow:0 8px 30px rgba(0,0,0,0.25);
-      overflow:hidden;
-      display:flex;
-      flex-direction:column;
-      color:var(--gold);
-    }
-
-    .main-image{
-      width:100%;
-      height:380px;
-      object-fit:contain;
-      background:#f4f6f8;
-      border-bottom:1px solid #eee;
-      display:block;
-      cursor:pointer;
-    }
-
-    .thumbnails{
-      display:flex;
-      justify-content:center;
-      gap:10px;
-      padding:10px;
-      background:#fafafa;
-    }
-    .thumbnails img{
-      width:64px;height:64px;object-fit:cover;border-radius:6px;cursor:pointer;
-      border:2px solid transparent;transition:border .15s ease, transform .12s ease;
-    }
+    .product-card{background:var(--card-surface);border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,0.25);overflow:hidden;display:flex;flex-direction:column;color:var(--gold)}
+    .main-image{width:100%;height:380px;object-fit:contain;background:#f4f6f8;border-bottom:1px solid #eee;display:block;cursor:pointer}
+    .thumbnails{display:flex;justify-content:center;gap:10px;padding:10px;background:#fafafa}
+    .thumbnails img{width:64px;height:64px;object-fit:cover;border-radius:6px;cursor:pointer;border:2px solid transparent;transition:border .12s ease, transform .12s ease}
     .thumbnails img:hover{ border-color:var(--blue); transform:translateY(-3px); }
 
-    .product-info{
-      padding:1rem;
-      flex:1;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-      color:var(--gold);
-    }
-    .product-info h2{font-size:1.15rem;margin:0 0 .5rem;color:var(--gold)}
-    .product-info p{font-size:.92rem;margin:0 0 1rem;line-height:1.45;color:var(--gold)}
-    .price{font-size:1.1rem;font-weight:700;margin-bottom:1rem;color:var(--gold)}
+    .product-info{padding:1rem;flex:1;display:flex;flex-direction:column;justify-content:space-between}
+    .product-info h2{font-size:1.15rem;margin:0 0 .5rem;color:var(--blue)}
+    .product-info p{font-size:.92rem;margin:0 0 1rem;line-height:1.45;color:#333}
+    .price{font-size:1.1rem;font-weight:700;margin-bottom:1rem;color:#111}
 
-    .buy-btn{
-      display:inline-block;padding:.7rem 1.1rem;border-radius:8px;background:var(--blue);
-      color:var(--gold);font-weight:700;text-decoration:none;text-align:center;
-      border:2px solid rgba(255,255,255,0.06);box-shadow:0 8px 18px rgba(0,0,0,0.18);
-      transition:background .15s ease, transform .12s ease;
-    }
+    .buy-btn{display:inline-block;padding:.7rem 1.1rem;border-radius:8px;background:var(--blue);color:var(--gold);font-weight:700;text-decoration:none;border:2px solid rgba(255,255,255,0.06);box-shadow:0 8px 18px rgba(0,0,0,0.18)}
     .buy-btn:hover{ background:var(--blue-dark); transform:translateY(-3px) }
 
-    /* FOOTER */
-    .site-footer{
-      background: var(--blue);
-      color: var(--gold);
-      padding: 18px 1.25rem;
-      font-family: Inter, Arial, sans-serif;
-      border-top: 1px solid rgba(255,255,255,0.04);
-    }
-    .site-footer .wrap{
-      max-width: 1200px;
-      margin: 0 auto;
-      display:flex;
-      gap:18px;
-      align-items:flex-start;
-      justify-content:space-between;
-      flex-wrap:wrap;
-    }
+    /* footer */
+    .site-footer{background: var(--blue);color: var(--gold);padding: 18px 1.25rem;border-top: 1px solid rgba(255,255,255,0.04)}
+    .site-footer .wrap{max-width:1200px;margin:0 auto;display:flex;gap:18px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap}
     .footer-col{min-width:200px;flex:1}
-    .footer-brand{font-weight:700;letter-spacing:0.4px;margin-bottom:6px}
-    .footer-links a{display:inline-block;color:var(--gold);text-decoration:none;margin-right:12px;font-size:0.95rem}
-    .footer-links a:hover{text-decoration:underline}
+    .footer-brand{font-weight:700;margin-bottom:6px}
+    .footer-links a{display:inline-block;color:var(--gold);text-decoration:none;margin-right:12px}
     .footer-contact{color:var(--muted);font-size:0.9rem;margin-top:8px}
-    .footer-bottom{
-      margin-top:12px;
-      border-top:1px solid rgba(255,255,255,0.04);
-      padding-top:12px;
-      color:var(--muted);
-      font-size:0.88rem;
-      text-align:center;
-    }
+    .footer-bottom{margin-top:12px;border-top:1px solid rgba(255,255,255,0.04);padding-top:12px;color:var(--muted);font-size:0.88rem;text-align:center}
 
-    /* Responsive */
     @media (max-width:820px){
       .main-image{height:260px}
       .thumbnails img{width:56px;height:56px}
-      #product-list{padding:0}
-      header h1{font-size:1rem}
     }
     @media (max-width:420px){
       .main-image{height:200px}
@@ -173,18 +95,16 @@
 </head>
 <body>
 
-  <!-- HEADER: MAĞAZA ADI - burayı değiştirin -->
   <header>
     <h1>MAĞAZA ADINIZ</h1>
   </header>
 
-  <!-- ANA İÇERİK -->
   <main>
     <div id="product-list">
 
-      <!-- ÜRÜN 1 -->
+      <!-- örnek ürün (bunu çoğaltabilirsin) -->
       <article class="product-card" aria-labelledby="p1-title">
-        <a id="lightbox-p1" href="images/1.jpg" data-lightbox="p1" data-title="Nişan / Söz / Gelin Buketi">
+        <a href="images/1.jpg" data-lightbox="p1" data-title="Nişan / Söz / Gelin Buketi">
           <img class="main-image" src="images/1.jpg" alt="Nişan / Söz / Gelin Buketi">
         </a>
         <div class="thumbnails">
@@ -203,170 +123,11 @@
         </div>
       </article>
 
-      <!-- ÜRÜN 2 -->
-      <article class="product-card" aria-labelledby="p2-title">
-        <a id="lightbox-p2" href="images/3.jpg" data-lightbox="p2" data-title="Kırmızı Gelin Çiçeği">
-          <img class="main-image" src="images/3.jpg" alt="Kırmızı Gelin Çiçeği">
-        </a>
-        <div class="thumbnails">
-          <img src="images/3.jpg" alt="Kırmızı 1" onclick="setMain(this)">
-        </div>
-        <div class="product-info">
-          <div>
-            <h2 id="p2-title">Kırmızı Gelin Çiçeği</h2>
-            <p>Canlı kırmızı tonlarında, uzun ömürlü el yapımı buket.</p>
-          </div>
-          <div style="display:flex;align-items:center;justify-content:space-between">
-            <div class="price">950 TL</div>
-            <a class="buy-btn" href="#" target="_blank" rel="noopener">Satın Al</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- ÜRÜN 3 -->
-      <article class="product-card" aria-labelledby="p3-title">
-        <a id="lightbox-p3" href="images/4.jpg" data-lightbox="p3" data-title="Pembe Nazar Buketi">
-          <img class="main-image" src="images/4.jpg" alt="Pembe Nazar Buketi">
-        </a>
-        <div class="thumbnails">
-          <img src="images/4.jpg" alt="Pembe 1" onclick="setMain(this)">
-        </div>
-        <div class="product-info">
-          <div>
-            <h2 id="p3-title">Pembe Nazar Buketi</h2>
-            <p>Soft pembe tonlarında el yapımı çiçek buketi, zarif sunumlu.</p>
-          </div>
-          <div style="display:flex;align-items:center;justify-content:space-between">
-            <div class="price">680 TL</div>
-            <a class="buy-btn" href="#" target="_blank" rel="noopener">Satın Al</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- ÜRÜN 4 -->
-      <article class="product-card" aria-labelledby="p4-title">
-        <a id="lightbox-p4" href="images/5.jpg" data-lightbox="p4" data-title="Rustik Buket">
-          <img class="main-image" src="images/5.jpg" alt="Rustik Buket">
-        </a>
-        <div class="thumbnails">
-          <img src="images/5.jpg" alt="Rustik 1" onclick="setMain(this)">
-        </div>
-        <div class="product-info">
-          <div>
-            <h2 id="p4-title">Rustik Buket</h2>
-            <p>Doğal dokulu, rustik tarzda el yapımı buket. Kırsal temalarla uyumlu.</p>
-          </div>
-          <div style="display:flex;align-items:center;justify-content:space-between">
-            <div class="price">520 TL</div>
-            <a class="buy-btn" href="#" target="_blank" rel="noopener">Satın Al</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- ÜRÜN 5 -->
-      <article class="product-card" aria-labelledby="p5-title">
-        <a id="lightbox-p5" href="images/6.jpg" data-lightbox="p5" data-title="Mini Buket Seti">
-          <img class="main-image" src="images/6.jpg" alt="Mini Buket Seti">
-        </a>
-        <div class="thumbnails">
-          <img src="images/6.jpg" alt="Mini 1" onclick="setMain(this)">
-        </div>
-        <div class="product-info">
-          <div>
-            <h2 id="p5-title">Mini Buket Seti</h2>
-            <p>Küçük ve şık mini buket seti — hediye için ideal.</p>
-          </div>
-          <div style="display:flex;align-items:center;justify-content:space-between">
-            <div class="price">320 TL</div>
-            <a class="buy-btn" href="#" target="_blank" rel="noopener">Satın Al</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- ÜRÜN 6 -->
-      <article class="product-card" aria-labelledby="p6-title">
-        <a id="lightbox-p6" href="images/7.jpg" data-lightbox="p6" data-title="Bohem Buket">
-          <img class="main-image" src="images/7.jpg" alt="Bohem Buket">
-        </a>
-        <div class="thumbnails">
-          <img src="images/7.jpg" alt="Bohem 1" onclick="setMain(this)">
-        </div>
-        <div class="product-info">
-          <div>
-            <h2 id="p6-title">Bohem Buket</h2>
-            <p>Renkli dokularla bohem stilinde hazırlanmış el işi buket.</p>
-          </div>
-          <div style="display:flex;align-items:center;justify-content:space-between">
-            <div class="price">890 TL</div>
-            <a class="buy-btn" href="#" target="_blank" rel="noopener">Satın Al</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- ÜRÜN 7 -->
-      <article class="product-card" aria-labelledby="p7-title">
-        <a id="lightbox-p7" href="images/8.jpg" data-lightbox="p7" data-title="Krem İnci Buket">
-          <img class="main-image" src="images/8.jpg" alt="Krem İnci Buket">
-        </a>
-        <div class="thumbnails">
-          <img src="images/8.jpg" alt="Krem 1" onclick="setMain(this)">
-        </div>
-        <div class="product-info">
-          <div>
-            <h2 id="p7-title">Krem İnci Buket</h2>
-            <p>Şık krem ve inci tonlarından oluşan özel tasarım buket.</p>
-          </div>
-          <div style="display:flex;align-items:center;justify-content:space-between">
-            <div class="price">1,150 TL</div>
-            <a class="buy-btn" href="#" target="_blank" rel="noopener">Satın Al</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- ÜRÜN 8 -->
-      <article class="product-card" aria-labelledby="p8-title">
-        <a id="lightbox-p8" href="images/9.jpg" data-lightbox="p8" data-title="Pastel Rüyası">
-          <img class="main-image" src="images/9.jpg" alt="Pastel Rüyası">
-        </a>
-        <div class="thumbnails">
-          <img src="images/9.jpg" alt="Pastel 1" onclick="setMain(this)">
-        </div>
-        <div class="product-info">
-          <div>
-            <h2 id="p8-title">Pastel Rüyası</h2>
-            <p>Pastel tonlarla hazırlanmış romantik buket, zarif hediye seçeneği.</p>
-          </div>
-          <div style="display:flex;align-items:center;justify-content:space-between">
-            <div class="price">770 TL</div>
-            <a class="buy-btn" href="#" target="_blank" rel="noopener">Satın Al</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- ÜRÜN 9 -->
-      <article class="product-card" aria-labelledby="p9-title">
-        <a id="lightbox-p9" href="images/10.jpg" data-lightbox="p9" data-title="Gece Bahçesi">
-          <img class="main-image" src="images/10.jpg" alt="Gece Bahçesi">
-        </a>
-        <div class="thumbnails">
-          <img src="images/10.jpg" alt="Gece 1" onclick="setMain(this)">
-        </div>
-        <div class="product-info">
-          <div>
-            <h2 id="p9-title">Gece Bahçesi</h2>
-            <p>Gece temalı koyu tonlarda, gösterişli el yapımı buket.</p>
-          </div>
-          <div style="display:flex;align-items:center;justify-content:space-between">
-            <div class="price">1,290 TL</div>
-            <a class="buy-btn" href="#" target="_blank" rel="noopener">Satın Al</a>
-          </div>
-        </div>
-      </article>
+      <!-- buraya diğer ürün kartlarını ekle (images/3.jpg ... ) -->
 
     </div>
   </main>
 
-  <!-- FOOTER -->
   <footer class="site-footer" role="contentinfo" aria-label="Sayfa altı">
     <div class="wrap">
       <div class="footer-col">
@@ -382,24 +143,20 @@
         <div class="footer-links" aria-label="Hukuki bağlantılar">
           <a href="/mesafeli-satis.html">Mesafeli Satış Sözleşmesi</a>
           <a href="/gizlilik.html">Gizlilik Politikası</a>
-          <a href="/iade-formu.html">İade / Cayma Formu</a>
-          <a href="/sss.html">S.S.S.</a>
         </div>
         <div class="footer-contact" style="margin-top:8px">
           <div><strong>Vergi Dairesi / No:</strong> [VERGİ DAİRESİ] / [VERGİ NO]</div>
-          <div><strong>İşletme Türü:</strong> [Şahıs / LTD / Diğer]</div>
         </div>
       </div>
 
       <div class="footer-col" style="text-align:right">
         <div style="font-size:0.95rem;font-weight:700">Güvenli Ödeme</div>
-        <div class="footer-contact" style="margin-top:8px">Shopier ile ödeme alınır. Tüm kart bilgileriniz ödeme sağlayıcısı tarafından işlenir.</div>
+        <div class="footer-contact" style="margin-top:8px">Shopier ile ödeme alınır. Ödeme işlemleri Shopier tarafından gerçekleştirilir.</div>
       </div>
     </div>
 
     <div class="footer-bottom">
       © <span id="year"></span> <strong>MAĞAZA ADINIZ</strong>. Tüm hakları saklıdır.
-      <div style="margin-top:6px">Bu site mesafeli satış kurallarına tabidir. İade ve cayma koşulları için <a href="/mesafeli-satis.html" style="color:var(--gold)">Mesafeli Satış Sözleşmesi</a>'ni inceleyiniz.</div>
     </div>
   </footer>
 
@@ -407,7 +164,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox-plus-jquery.min.js"></script>
 
   <script>
-    // küçük resme tıklayınca ilgili kartın ana görselini ve lightbox linkini güncelle
+    // küçük resme tıklayınca ilgili kartın ana görselini güncelle
     function setMain(imgEl) {
       const card = imgEl.closest('.product-card');
       if(!card) return;
@@ -417,8 +174,6 @@
       if(lightLink) lightLink.href = imgEl.src;
       if(lightLink) lightLink.setAttribute('data-title', card.querySelector('h2')?.innerText || '');
     }
-
-    // footer yılını otomatik güncelle
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
