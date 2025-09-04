@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>mk</title>
+  <title>MAĞAZA ADINIZ — Ürün Kataloğu</title>
 
   <!-- Lightbox CSS (CDN) - görsel açma için, çerez üretmez -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet">
@@ -102,9 +102,9 @@
   <main>
     <div id="product-list">
 
-      <!-- örnek ürün (bunu çoğaltabilirsin) -->
+      <!-- ÜRÜN 1 -->
       <article class="product-card" aria-labelledby="p1-title">
-        <a href="images/1.jpg" data-lightbox="p1" data-title="Nişan / Söz / Gelin Buketi">
+        <a id="lightbox-p1" href="images/1.jpg" data-lightbox="p1" data-title="Nişan / Söz / Gelin Buketi">
           <img class="main-image" src="images/1.jpg" alt="Nişan / Söz / Gelin Buketi">
         </a>
         <div class="thumbnails">
@@ -123,7 +123,165 @@
         </div>
       </article>
 
-      <!-- buraya diğer ürün kartlarını ekle (images/3.jpg ... ) -->
+      <!-- ÜRÜN 2 -->
+      <article class="product-card" aria-labelledby="p2-title">
+        <a id="lightbox-p2" href="images/3.jpg" data-lightbox="p2" data-title="Kırmızı Gelin Çiçeği">
+          <img class="main-image" src="images/3.jpg" alt="Kırmızı Gelin Çiçeği">
+        </a>
+        <div class="thumbnails">
+          <img src="images/3.jpg" alt="Kırmızı 1" onclick="setMain(this)">
+        </div>
+        <div class="product-info">
+          <div>
+            <h2 id="p2-title">Kırmızı Gelin Çiçeği</h2>
+            <p>Canlı kırmızı tonlarında, uzun ömürlü el yapımı buket.</p>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <div class="price">950 TL</div>
+            <a class="buy-btn" href="#" target="_blank" rel="noopener">Satın Al</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- ÜRÜN 3 -->
+      <article class="product-card" aria-labelledby="p3-title">
+        <a id="lightbox-p3" href="images/4.jpg" data-lightbox="p3" data-title="Pembe Nazar Buketi">
+          <img class="main-image" src="images/4.jpg" alt="Pembe Nazar Buketi">
+        </a>
+        <div class="thumbnails">
+          <img src="images/4.jpg" alt="Pembe 1" onclick="setMain(this)">
+        </div>
+        <div class="product-info">
+          <div>
+            <h2 id="p3-title">Pembe Nazar Buketi</h2>
+            <p>Soft pembe tonlarında el yapımı çiçek buketi, zarif sunumlu.</p>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <div class="price">680 TL</div>
+            <a class="buy-btn" href="#" target="_blank" rel="noopener">Satın Al</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- ÜRÜN 4 -->
+      <article class="product-card" aria-labelledby="p4-title">
+        <a id="lightbox-p4" href="images/5.jpg" data-lightbox="p4" data-title="Rustik Buket">
+          <img class="main-image" src="images/5.jpg" alt="Rustik Buket">
+        </a>
+        <div class="thumbnails">
+          <img src="images/5.jpg" alt="Rustik 1" onclick="setMain(this)">
+        </div>
+        <div class="product-info">
+          <div>
+            <h2 id="p4-title">Rustik Buket</h2>
+            <p>Doğal dokulu, rustik tarzda el yapımı buket. Kırsal temalarla uyumlu.</p>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <div class="price">520 TL</div>
+            <a class="buy-btn" href="#" target="_blank" rel="noopener">Satın Al</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- ÜRÜN 5 -->
+      <article class="product-card" aria-labelledby="p5-title">
+        <a id="lightbox-p5" href="images/6.jpg" data-lightbox="p5" data-title="Mini Buket Seti">
+          <img class="main-image" src="images/6.jpg" alt="Mini Buket Seti">
+        </a>
+        <div class="thumbnails">
+          <img src="images/6.jpg" alt="Mini 1" onclick="setMain(this)">
+        </div>
+        <div class="product-info">
+          <div>
+            <h2 id="p5-title">Mini Buket Seti</h2>
+            <p>Küçük ve şık mini buket seti — hediye için ideal.</p>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <div class="price">320 TL</div>
+            <a class="buy-btn" href="#" target="_blank" rel="noopener">Satın Al</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- ÜRÜN 6 -->
+      <article class="product-card" aria-labelledby="p6-title">
+        <a id="lightbox-p6" href="images/7.jpg" data-lightbox="p6" data-title="Bohem Buket">
+          <img class="main-image" src="images/7.jpg" alt="Bohem Buket">
+        </a>
+        <div class="thumbnails">
+          <img src="images/7.jpg" alt="Bohem 1" onclick="setMain(this)">
+        </div>
+        <div class="product-info">
+          <div>
+            <h2 id="p6-title">Bohem Buket</h2>
+            <p>Renkli dokularla bohem stilinde hazırlanmış el işi buket.</p>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <div class="price">890 TL</div>
+            <a class="buy-btn" href="#" target="_blank" rel="noopener">Satın Al</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- ÜRÜN 7 -->
+      <article class="product-card" aria-labelledby="p7-title">
+        <a id="lightbox-p7" href="images/8.jpg" data-lightbox="p7" data-title="Krem İnci Buket">
+          <img class="main-image" src="images/8.jpg" alt="Krem İnci Buket">
+        </a>
+        <div class="thumbnails">
+          <img src="images/8.jpg" alt="Krem 1" onclick="setMain(this)">
+        </div>
+        <div class="product-info">
+          <div>
+            <h2 id="p7-title">Krem İnci Buket</h2>
+            <p>Şık krem ve inci tonlarından oluşan özel tasarım buket.</p>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <div class="price">1,150 TL</div>
+            <a class="buy-btn" href="#" target="_blank" rel="noopener">Satın Al</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- ÜRÜN 8 -->
+      <article class="product-card" aria-labelledby="p8-title">
+        <a id="lightbox-p8" href="images/9.jpg" data-lightbox="p8" data-title="Pastel Rüyası">
+          <img class="main-image" src="images/9.jpg" alt="Pastel Rüyası">
+        </a>
+        <div class="thumbnails">
+          <img src="images/9.jpg" alt="Pastel 1" onclick="setMain(this)">
+        </div>
+        <div class="product-info">
+          <div>
+            <h2 id="p8-title">Pastel Rüyası</h2>
+            <p>Pastel tonlarla hazırlanmış romantik buket, zarif hediye seçeneği.</p>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <div class="price">770 TL</div>
+            <a class="buy-btn" href="#" target="_blank" rel="noopener">Satın Al</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- ÜRÜN 9 -->
+      <article class="product-card" aria-labelledby="p9-title">
+        <a id="lightbox-p9" href="images/10.jpg" data-lightbox="p9" data-title="Gece Bahçesi">
+          <img class="main-image" src="images/10.jpg" alt="Gece Bahçesi">
+        </a>
+        <div class="thumbnails">
+          <img src="images/10.jpg" alt="Gece 1" onclick="setMain(this)">
+        </div>
+        <div class="product-info">
+          <div>
+            <h2 id="p9-title">Gece Bahçesi</h2>
+            <p>Gece temalı koyu tonlarda, gösterişli el yapımı buket.</p>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <div class="price">1,290 TL</div>
+            <a class="buy-btn" href="#" target="_blank" rel="noopener">Satın Al</a>
+          </div>
+        </div>
+      </article>
 
     </div>
   </main>
