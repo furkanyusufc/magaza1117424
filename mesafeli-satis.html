@@ -1,205 +1,130 @@
 <!doctype html>
 <html lang="tr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>m</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Mesafeli Satış Sözleşmesi</title>
   <style>
     :root{
-      --page-bg: #fafafa;
-      --card-bg: #ffffff;
-      --accent: #163559;
-      --gold: #d4af37;
-      --muted: #666;
+      --bg:#fafafa;
+      --card:#fff;
+      --muted:#666;
+      --accent:#163559;
+      --gold:#d4af37;
+      font-family: Arial, Helvetica, sans-serif;
     }
-    html,body{height:100%;margin:0;padding:0;background:var(--page-bg);font-family:Arial, Helvetica, sans-serif;color:#111}
-    .wrap{max-width:980px;margin:28px auto;padding:22px;background:var(--card-bg);border-radius:8px;box-shadow:0 8px 30px rgba(0,0,0,0.06)}
-    h1{margin-top:0;color:var(--accent);font-size:1.5rem}
-    h2{color:#222;margin:18px 0 8px}
-    p{margin:0 0 10px;line-height:1.5}
+    body{margin:0;background:var(--bg);color:#111;font-family:Arial,Helvetica,sans-serif;line-height:1.5}
+    .container{max-width:980px;margin:28px auto;padding:20px;background:var(--card);border-radius:8px;box-shadow:0 6px 22px rgba(0,0,0,0.06)}
+    h1{margin-top:0;color:var(--accent)}
+    h2{color:#222;margin-bottom:8px}
+    p{color:#222}
     .muted{color:var(--muted);font-size:0.95rem}
-    .section{margin-bottom:12px}
-    dl{margin:8px 0}
-    ul, ol{margin:8px 0 12px 22px}
-    pre{background:#f5f5f5;padding:10px;border-radius:6px;overflow:auto}
-    .note{background:#fff8e6;padding:10px;border-left:4px solid var(--gold);border-radius:4px;margin-top:12px}
-    footer{margin-top:18px;font-size:0.9rem;color:var(--muted)}
+    dl{margin:12px 0}
+    pre{background:#f3f3f3;padding:12px;border-radius:6px;overflow:auto}
+    table{width:100%;border-collapse:collapse;margin:10px 0}
+    table td, table th{padding:8px;border:1px solid #eee}
+    .note{font-size:0.9rem;color:#555;background:#fff8e6;padding:10px;border-left:4px solid var(--gold);border-radius:4px}
+    .small{font-size:0.9rem;color:var(--muted)}
+    .center{text-align:center}
     a{color:var(--accent)}
-    /* responsive small */
-    @media (max-width:520px){
-      .wrap{margin:12px;padding:14px}
-      h1{font-size:1.25rem}
-    }
+    footer{margin-top:18px;font-size:0.9rem;color:var(--muted)}
+    .btn{display:inline-block;background:var(--accent);color:white;padding:10px 14px;border-radius:6px;text-decoration:none}
+    .form-block{background:#f9f9f9;padding:12px;border-radius:6px;border:1px solid #eee}
   </style>
 </head>
 <body>
-  <div class="wrap">
+  <div class="container">
     <h1>Mesafeli Satış Sözleşmesi</h1>
 
-    <section class="section">
-      <h2>1. TARAFLAR:</h2>
+    <p class="muted">Bu sözleşme, <strong>[SATICI ADI]</strong> ile internet sitesi üzerinden sipariş veren tüketici arasında, mesafeli satışlara ilişkin hak ve yükümlülükleri düzenler.</p>
 
-      <h3>SATICI:</h3>
-      <dl>
-        <dt>Adı – Soyadı / Ünvanı :</dt>
-        <dd>[SATICI ADI / ÜNVANI]</dd>
+    <h2>1. SATICI BİLGİLERİ</h2>
+    <p>
+      <strong>Unvan / İsim:</strong> <em>[SATICI ADI]</em><br>
+      <strong>Vergi Dairesi / No:</strong> <em>[VERGİ DAİRESİ / NO]</em><br>
+      <strong>Adres:</strong> <em>[ADRES]</em><br>
+      <strong>İletişim (e-posta/telefon):</strong> <em>[E-POSTA] / [TELEFON]</em>
+    </p>
 
-        <dt>VKN veya TCKN :</dt>
-        <dd>[VKN / TCKN]</dd>
+    <h2>2. SÖZLEŞMENİN KONUSU</h2>
+    <p>Bu sözleşme, SATICI tarafından alıcıya (tüketiciye) internet aracılığıyla sunulan ürünlerin sipariş ve teslim şartları, ödeme, cayma ve iade koşullarını düzenler.</p>
 
-        <dt>Adresi :</dt>
-        <dd>[ADRES]</dd>
+    <h2>3. ÜRÜN, FİYAT, ÖDEME</h2>
+    <ul>
+      <li>Ürünler ve fiyatları sipariş sayfasında belirtilir. Fiyatlara KDV dahildir (veya belirtiniz).</li>
+      <li>Ödeme yöntemleri: Shopier veya belirtilen diğer ödeme araçları ile sağlanır.</li>
+      <li>Ödeme sırasında ödemenin başarılı olması durumunda sipariş onayı verilir.</li>
+    </ul>
 
-        <dt>Telefon :</dt>
-        <dd>[TELEFON]</dd>
+    <h2>4. TESLİMAT</h2>
+    <ul>
+      <li>Teslim süresi, sipariş onayından sonra en geç <strong>[X]</strong> iş günü içinde kargo firmasına teslim edilmesi şeklindedir (öngörülen süre: [X] iş günü).</li>
+      <li>Kargo ücreti ve teslim koşulları sipariş sayfasında gösterilir.</li>
+      <li>Teslimatta alıcı kargo görevlisine ürünü kontrol edip hasarlı teslim almama hakkına sahiptir; hasarlı teslim durumunda tutanak tutulmalıdır.</li>
+    </ul>
 
-        <dt>E-posta :</dt>
-        <dd>[E-POSTA]</dd>
-      </dl>
+    <h2>5. CAYMA HAKKI (14 GÜN)</h2>
+    <p>
+      Tüketici, 6502 sayılı Tüketicinin Korunması Hakkında Kanun hükümleri çerçevesinde, malın teslim tarihinden itibaren <strong>14 (ondört) gün</strong> içinde hiçbir gerekçe göstermeksizin ve cezai şart ödemeksizin sözleşmeden cayma hakkına sahiptir.
+    </p>
+    <p class="small">Cayma süresi, malın teslim edildiği günden itibaren başlar. Cayma hakkının kullanılabilmesi için SATICI'ya açık bir bildirimde bulunulması gerekmektedir (e-posta/posta/faks ile).</p>
 
-      <h3>ARACI HİZMET SAĞLAYICI:</h3>
-      <dl>
-        <dt>Ünvan :</dt>
-        <dd>Değer Teknoloji A.Ş.</dd>
+    <h2>6. CAYMA İŞLEMİ NASIL YAPILIR?</h2>
+    <p>İade / cayma talebi için aşağıdaki İADE / CAYMA BİLDİRİM FORMU kullanılabilir veya aşağıdaki iletişim adreslerine bildirim yapılabilir:</p>
+    <ul>
+      <li><strong>E-posta:</strong> <em>[E-POSTA]</em></li>
+      <li><strong>Adres:</strong> <em>[ADRES]</em></li>
+      <li><strong>Telefon:</strong> <em>[TELEFON]</em></li>
+    </ul>
 
-        <dt>MERSİS no :</dt>
-        <dd>0272045884800019</dd>
+    <div class="form-block">
+      <strong>İADE / CAYMA BİLDİRİM FORMU (örnek)</strong>
+      <pre>
+Alıcı Adı Soyadı:
+Sipariş No:
+Ürün(ler):
+İade Nedeni:
+İade Talebi Tarihi:
+IBAN (iade için):
+İmza / Onay:
+      </pre>
+      <p class="small">Lütfen formu e-posta ile gönderiniz veya iletişim adresine postalayınız.</p>
+    </div>
 
-        <dt>Adresi :</dt>
-        <dd>İçerenköy Mah. Umut Sok. Quick Tower No:10-12/70 Ataşehir, İstanbul</dd>
+    <h2>7. İADE KOŞULLARI</h2>
+    <ul>
+      <li>İade edilecek ürünün kullanılmamış, ambalajının açılmamış ve satılabilir durumda olması gereklidir (ürüne göre değişiklik olabilir).</li>
+      <li>Cayma hakkı kapsamındaki iadelerde, ürünün geri gönderilme masrafları ve sorumluluğu taraflara göre şu şekilde belirlenir: <strong>[İADE GÖNDERİM MALİYETİNİ KİM ÖDEYECEK?]</strong></li>
+      <li>İade edilen ürünün satılmayacak durumda olması halinde SATICI'nın tazminat talep etme hakkı saklıdır.</li>
+    </ul>
 
-        <dt>Telefon :</dt>
-        <dd>08508401510</dd>
+    <h2>8. PARA İADESİ</h2>
+    <p>İade ve cayma hallerinde SATICI, tüketiciden ürünü teslim aldığı tarihten itibaren en geç <strong>14 gün</strong> içinde iadeyi gerçekleştirir. Para iadesi, ödeme yöntemiyle aynı kanalla yapılır; aksi durumda alıcının belirttiği IBAN'a havuz işlemiyle iade edilebilir.</p>
 
-        <dt>E-posta :</dt>
-        <dd>hello@shopier.com</dd>
-      </dl>
+    <h2>9. CAYMA HAKKININ SINIRLANDIĞI DURUMLAR</h2>
+    <p>Aşağıdaki durumlarda cayma hakkı kullanılamaz (örnek listesi — ürüne göre güncelleyin):</p>
+    <ul>
+      <li>Sağlık veya hijyen açısından uygun olmayan, çabuk bozulan ürünler.</li>
+      <li>Tüketicinin isteği üzerine hazırlanan ya da kişiye özel üretilen mallar.</li>
+      <li>Açıldıktan sonra hijyenik özelliğini kaybeden ambalajlı ürünler.</li>
+    </ul>
 
-      <h3>ALICI (TÜKETİCİ):</h3>
-      <dl>
-        <dt>Adı – Soyadı :</dt>
-        <dd>[ALICI ADI SOYADI]</dd>
+    <h2>10. AYIPLI MAL HALLERİ</h2>
+    <p>Ayıplı mal halinde tüketicinin tercihine bağlı olarak ücretsiz onarım, bedel indirimi veya sözleşmeden dönme hakları saklıdır. Ayıp tespit edildiğinde SATICI'ya derhal bildirim yapılmalıdır.</p>
 
-        <dt>Adresi :</dt>
-        <dd>[ALICI ADRESİ]</dd>
+    <h2>11. SORUMLULUK VE GARANTİLER</h2>
+    <p>Ürünler ile ilgili garanti koşulları ürünle birlikte verilen belgelerde ve sipariş sayfasında belirtilmiştir. Kanundan doğan zorunlu tüketici hakları saklıdır.</p>
 
-        <dt>Telefon :</dt>
-        <dd>[ALICI TELEFON]</dd>
+    <h2>12. UYUŞMAZLIKLARIN ÇÖZÜMÜ</h2>
+    <p>Taraflar arasında doğabilecek uyuşmazlıklarda öncelikle Tüketici Hakem Heyeti'ne başvuru yapılabilir; aksi takdirde yetkili mahkeme ... (ülkenizde geçerli uygulamaya göre düzenleyin).</p>
 
-        <dt>E-posta :</dt>
-        <dd>[ALICI E-POSTA]</dd>
-      </dl>
+    <div class="note">
+      <strong>Önemli:</strong> Bu metin örnek bir mesafeli satış sözleşmesidir. Hukuki uygunluk, iş modelinize ve sattığınız ürünlere göre değişir. Resmi, bağlayıcı ve ayrıntılı bir metin için bir hukuk danışmanı ile görüşmenizi tavsiye ederiz.
+    </div>
 
-      <h3>SATIN ALINAN ÜRÜN:</h3>
-      <dl>
-        <dt>Ürünün Adı :</dt>
-        <dd>[ÜRÜN ADI]</dd>
-
-        <dt>Adedi :</dt>
-        <dd>[ADET]</dd>
-
-        <dt>Teslimat Adresi :</dt>
-        <dd>[TESLİMAT ADRESİ]</dd>
-
-        <dt>Teslim Edilecek Kişi :</dt>
-        <dd>[TESLİM ALAN KİŞİ]</dd>
-
-        <dt>Fatura Adresi :</dt>
-        <dd>[FATURA ADRESİ]</dd>
-
-        <dt>Teslim Süresi :</dt>
-        <dd>-</dd>
-
-        <dt>Kargo Ücreti :</dt>
-        <dd>Nakliyeye ilişkin kargo ve gönderim masrafları Alıcı’ya aittir. Bu bedel önceden net olarak hesaplanmamaktadır.</dd>
-
-        <dt>Toplam Sipariş Tutarı (KDV Dahil) :</dt>
-        <dd>[TOPLAM TUTAR]</dd>
-
-        <dt>Ödeme Şekli :</dt>
-        <dd>Kredi kartı</dd>
-      </dl>
-    </section>
-
-    <section class="section">
-      <h2>2. SÖZLEŞMENİN KONUSU</h2>
-      <p><strong>2.1.</strong> İşbu Sözleşme, 07.11.2013 tarihli ve 6502 sayılı Tüketicinin Korunması Hakkında Kanun’un 48. ve 84. maddeleri uyarınca hazırlanmış olan 27.11.2014 tarihli ve 29188 sayılı Resmi Gazete’de yayınlanarak 27.02.2015 tarihinde yürürlüğe giren Mesafeli Sözleşmeler Yönetmeliği hükümlerine uygun olarak düzenlenmiştir.</p>
-
-      <p><strong>2.2.</strong> İşbu Sözleşmenin tarafları olan Satıcı ve Alıcı, işbu Sözleşmeyle birlikte Tüketicinin Korunması Hakkında Kanun ve Mesafeli Sözleşmeler Yönetmeliği’nden kaynaklanan yükümlülük ve sorumluluklarını bildiklerini ve anladıklarını kabul ve beyan ederler.</p>
-    </section>
-
-    <section class="section">
-      <h2>3. GENEL HÜKÜMLER</h2>
-
-      <p><strong>3.1.</strong> İşbu Sözleşme kapsamında Değer Teknoloji A.Ş. (“Şirket” veya “Shopier”) yalnızca ve sadece Mesafeli Sözleşmeler Yönetmeliği kapsamında sağlayıcı sıfatını haiz olup Alıcı, Değer Teknoloji A.Ş.’nin ürüne ve ürünün gönderilmesine ilişkin herhangi bir sorumluluğunun bulunmadığını kabul eder. Satın alınan ürünün bedeli Shopier tarafından Alıcı’dan tahsil edilecek olup Alıcı ürünün bedelini Shopier’e ödemekle, ürün bedelini Satıcı’ya ödemiş sayılacaktır. Alıcı’nın ilgili mevzuat kapsamında iade hakları saklıdır.</p>
-
-      <p><strong>3.2.</strong> İşbu Sözleşme tarafları Alıcı ile Satıcıdır. İşbu Sözleşmenin yerine getirilmesi ile ilgili tüm yükümlülük ve sorumluluklar Sözleşmenin taraflarına aittir. İşbu sözleşme Alıcı tarafından elektronik olarak onaylandığı tarihte yürürlüğe girer.</p>
-
-      <p><strong>3.3.</strong> Alıcı, 1. maddede belirtilen Sözleşme konusu ürünün özellikleri ve satışa ilişkin koşulları ile ilgili tüm bilgileri okuyup anladığını bu ürünün satın alınması için elektronik ortamda satın almaya ilişkin gerekli onayı verdiğini kabul ve beyan eder.</p>
-
-      <p><strong>3.4.</strong> Satıcı, Sözleşme konusu ürünün sağlam, eksiksiz, listelendiği şekle niteliklere uygun ve varsa garanti belgeleri ve kullanım kılavuzları ile birlikte teslim edilmesinden sorumludur. Bu kapsamda Alıcı, Shopier’in ürüne ve ürünün gönderilmesine ilişkin herhangi bir sorumluluğunun bulunmadığını, bu durumun ürünün Satıcı tarafından anlaşmalı kargo şirketleri vasıtası ile gönderilmesi durumunda da değişmeyeceğini kabul eder.</p>
-
-      <p><strong>3.5.</strong> Shopier’in herhangi bir nedenle ürün bedelini Alıcı’ya ait kredi kartından çekememesi veya ürünün kullanıma başlanmasından sonra Alıcı’ya ait kredi kartının Alıcı’nın kusurundan kaynaklanmayan bir şekilde yetkisiz kişilerce haksız veya hukuka aykırı olarak kullanılması nedeni ile ilgili banka veya finans kuruluşunun ürün bedelini Shopier’e ödememesi halinde Shopier ürünün kullanımını durdurma hakkına sahiptir.</p>
-
-      <p><strong>3.6.</strong> Alıcı, yürürlükte bulunan mevzuat hükümleri gereğince masraf, ücret, faiz ve temerrüt faizi ile ilgili hükümlerin banka ve Alıcı arasındaki kredi kartı sözleşmesi kapsamında uygulanacağını, Shopier’in bu konuda herhangi bir yükümlülüğü bulunmadığını kabul, beyan ve taahhüt eder.</p>
-
-      <p><strong>3.7.</strong> Siparişe konu olan ürünün çeşitli sebeplerle kullanılamaması halinde kredi kartına iade prosedürü aşağıdaki gibi olacaktır:</p>
-      <p><strong>3.7.1.</strong> Ürünlerin fiyatları, katma değer vergisi ilave edilmiş Türk Lirası cinsinden sitede yer almaktadır. Alıcı kredi kartı ile alışveriş yapabilir. Kredi kartı ile verilen siparişler, kredi kartından işbu Sözleşme uyarınca Alıcı tarafından ödenmesi gerekli tutarın blokesinin yapıldığı an işleme alınacaktır.</p>
-
-      <p><strong>3.7.2.</strong> Kredi kartı ile alınmış ürünlerin iadesi durumunda Shopier, Alıcı’ya nakit para ile ödeme yapmaz, bankaya bedeli tek seferde ödemesinden sonra banka tarafından karta iade gerçekleştirilecektir.</p>
-
-      <p><strong>3.8.</strong> Alıcı ve Satıcı, işbu Sözleşme’de belirtilen kendilerine ait bilgilerin internet sitesine/uygulamaya girdikleri bilgiler olduğunu, bu bilgileri herhangi bir sebeple yanlış veya eksik girmeleri halinde dahi bu Sözleşme’nin kendileri tarafından sağlanan bilgilerle geçerli olacağını, internet sitesinin/uygulamanın Alıcı ve Satıcı tarafından verilen bilgilerin doğruluğunu ve geçerliliğini kontrol etme yükümlülüğü bulunmadığını ve ayrıca, Alıcı’nın ve Satıcı’nın işbu Sözleşme’nin ifa edilebilmesi için birbirlerine ve/veya Shopier’e aktardıkları kişisel verileri ile sair bilgilerinin, Sözleşme’nin ifası kapsamıyla sınırlı olmak üzere ve Sözleşme konusu ürünün gönderilebilmesi için posta hizmet sağlayıcılara aktarılacağını kabul, beyan ve taahhüt ederler.</p>
-
-      <p><strong>3.9.</strong> Alıcı, vadeli satışların sadece bankalara ait kredi kartları ile yapılması nedeniyle; ilgili faiz oranlarını ve temerrüt faizi ile ilgili bilgileri bankasından ayrıca teyit etmesi gerektiğini bildiğini kabul eder.</p>
-    </section>
-
-    <section class="section">
-      <h2>4. CAYMA HAKKI</h2>
-
-      <p><strong>4.1.</strong> Alıcı; malı teslim aldığı tarihten itibaren on dört gün içerisinde hiçbir hukuki ve cezai sorumluluk üstlenmeksizin ve hiçbir gerekçe göstermeksizin malı reddederek Sözleşmeden cayma hakkına sahiptir. Tüketicinin cayma bildiriminin Satıcı’ya ulaştığı tarihten itibaren 10 (on) gün içinde ürün bedeli Alıcı’ya iade edilir. Cayma hakkının kullanımından kaynaklanan masraflar Satıcı’nın Anlaşmalı Kargo hizmeti ile sağlayacağı iade kargo kodu kullanılması durumunda Satıcı’ya ait olup öngörülen dışında bir taşıyıcıyla iadesi halinde ise Alıcı’ya aittir.</p>
-
-      <p><strong>4.2.</strong> Cayma bildirimi, Shopier’de yer alan "Talep / Şikayet Kaydı Oluşturma" formu üzerinden açılacak kayıt ile bildirilecektir.</p>
-
-      <p><strong>4.3.</strong> Satıcı, tüketicinin hiçbir hukuki ve cezai sorumluluk üstlenmeksizin ve hiçbir gerekçe göstermeksizin malı teslim aldığı veya Sözleşmenin imzalandığı tarihten itibaren on dört gün içerisinde malı veya hizmeti reddederek Sözleşmeden cayma hakkının var olduğunu ve cayma bildiriminin Satıcı’ya ulaşması tarihinden itibaren ürünü geri almayı ve ürün bedelini Alıcı’ya ya da Shopier’e iade etmeyi taahhüt etmektedir.</p>
-
-      <p><strong>4.4.</strong> Taraflar, Mesafeli Sözleşmeler Yönetmeliği m. 15/1 uyarınca cayma hakkının aşağıdaki hallerde kullanamayacağını kabul etmiştir:</p>
-
-      <ol>
-        <li>Fiyatı finansal piyasalardaki dalgalanmalara bağlı olarak değişen ve satıcı kontrolünde olmayan mal veya hizmetler,</li>
-        <li>Tüketicinin istekleri, talepleri veya kişisel ihtiyaçları doğrultusunda hazırlanan mallar,</li>
-        <li>Çabuk bozulabilen veya son kullanma tarihi geçebilecek mallar,</li>
-        <li>Tesliminden sonra ambalaj, bant, mühür, paket gibi koruyucu unsurları açılmış olan mallardan iadesi sağlık ve hijyen açısından uygun olmayanlar,</li>
-        <li>Tesliminden sonra başka ürünlerle karışan ve doğası gereği ayrıştırılması mümkün olmayan mallar,</li>
-        <li>Malın tesliminden sonra ambalaj, bant, mühür, paket gibi koruyucu unsurları açılmış olması halinde maddi ortamda sunulan kitap, dijital içerik ve bilgisayar sarf malzemeleri,</li>
-        <li>Abonelik sözleşmesi kapsamında sağlananlar dışında, gazete ve dergi gibi süreli yayınlar,</li>
-        <li>Belirli bir tarihte veya dönemde yapılması gereken, konaklama, eşya taşıma, araba kiralama, yiyecek-içecek tedariki ve eğlence veya dinlenme amacıyla yapılan boş zamanın değerlendirilmesine ilişkin hizmetler,</li>
-        <li>Elektronik ortamda anında ifa edilen hizmetler veya tüketiciye anında teslim edilen gayri maddi mallar,</li>
-        <li>Cayma hakkı süresi sona ermeden önce, tüketicinin onayı ile ifasına başlanan hizmetler,</li>
-        <li>13.10.1983 tarihli ve 2918 sayılı Karayolları Trafik Kanunu’na göre tescili zorunlu olan taşınırlar ile kayıt veya tescil zorunluluğu bulunan insansız hava araçlarına ilişkin mallar,</li>
-        <li>Tüketiciye teslimi yapılmış olan cep telefonu, akıllı saat, tablet ve bilgisayarlara ilişkin mallar,</li>
-        <li>Canlı müzayede şeklinde açık artırma yoluyla akdedilen ve</li>
-        <li>Tanıtma ve kullanma kılavuzunda satıcı veya yetkili servis tarafından kurulum veya montajının yapılacağı belirtilen mallardan kurulum ya da montajı yapılanlara ilişkin sözleşmeler.</li>
-      </ol>
-    </section>
-
-    <section class="section">
-      <h2>5. MÜCBİR HALLER</h2>
-      <p><strong>5.1.</strong> Sözleşmenin imzalandığı tarihte var olmayan ve ön görülemeyen, tarafların kontrolleri dışında gelişen, ortaya çıkmasıyla taraflardan birinin ya da her ikisinin de sözleşme ile yüklendikleri borç ve sorumluluklarını kısmen ya da tamamen yerine getirmelerini ya da bunları zamanında yerine getirmelerini imkansızlaştıran haller, mücbir sebep (doğal afet, savaş, terör, ayaklanma, mevzuat hükümleri, el koyma veya grev, lokavt, üretim ve iletişim tesislerinde önemli mahiyette arıza vb.) olarak kabul edilecektir.</p>
-    </section>
-
-    <section class="section">
-      <h2>6. YETKİLİ MAHKEME</h2>
-
-      <p><strong>6.1.</strong> İşbu Sözleşmenin uygulanmasında ve çıkabilecek ihtilaflarda; her yıl Gümrük ve Ticaret Bakanlığı tarafından ilan edilen değere kadar Alıcı veya Satıcı’nın yerleşim yerindeki Tüketici Hakem Heyetleri, söz konusu değerin üzerindeki ihtilaflarda ise Tüketici Mahkemeleri yetkilidir.</p>
-
-      <p><strong>6.2.</strong> İşbu Sözleşme elektronik ortamda taraflarca okunmuş, kabul edilmiş ve teyit edilmiştir. İşbu Sözleşmede düzenlenmemiş hususlarda 6502 sayılı Tüketicinin Korunması Hakkında Kanun ve sair ilgili mevzuat hükümleri uygulanır.</p>
-    </section>
-
-    <section class="section">
-      <h2>7. YÜRÜRLÜK</h2>
-
-      <p><strong>7.1.</strong> İşbu Sözleşme Alıcı’nın elektronik onayı tarihinde düzenlenmiştir. İşbu Sözleşme, Alıcı’nın elektronik onayı tarihinde yürürlüğe girecektir.</p>
-    </section>
+    <footer class="center">
+      <p class="small">SATICI: [SATICI ADI] — Vergi Dairesi/No: [___] — Adres: [___] — E-posta: [___]</p>
+    </footer>
   </div>
 </body>
 </html>
